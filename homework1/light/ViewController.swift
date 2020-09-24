@@ -11,7 +11,7 @@ import AVFoundation
 
 class ViewController: UIViewController {
 
-    var i=0
+    var on = false
     let device=AVCaptureDevice.default(for: AVMediaType.video);
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,19 +24,19 @@ class ViewController: UIViewController {
     
     @IBAction func light(_ sender: Any) {
         try?device?.lockForConfiguration()
-        if i%2==0
+        if on == false
         {
             (sender as! UIButton).setTitle("OFF",for:[])
             background.backgroundColor=UIColor.white
             device?.torchMode = .on
-            i=i+1;
+            on = true
         }
         else
         {
             (sender as! UIButton).setTitle("ON",for:[])
             background.backgroundColor=UIColor.black
             device?.torchMode = .off
-            i=i+1;
+            on = false
         }
         device?.unlockForConfiguration()
     }
