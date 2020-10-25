@@ -10,23 +10,27 @@ import Foundation
 class calculator{
     var num1 : Float
     var num2 : Float
-    var operation : String
     var result : String
     var eorPi : Bool
+    var FirstNum1 : Bool
+    var lastOpera : String
     init() {
         self.num1=0
         self.num2=0
-        self.operation=""
         self.result="0"
         self.eorPi=false
+        self.FirstNum1=true
+        self.lastOpera=""
     }
     func inputNum(num: String)->String{
+        self.result="0"
         if  num=="AC"{
             self.num1=0
             self.num2=0
-            self.operation=""
             self.result="0"
             self.eorPi=false
+            self.FirstNum1=true
+            self.lastOpera=""
         }
         else if num=="+/-"{
             if (self.result as NSString).floatValue<0{
@@ -134,11 +138,82 @@ class calculator{
         self.result=String(self.num2)
         return self.result
     }
+    func BinaryOpera(cal:String)->Bool{
+        return cal=="x^y"||cal=="y√x"||cal=="÷"||cal=="×"||cal=="-"||cal=="+"
+    }
+    func CalBinaryOpera(cal:String)->String{
+        if cal=="x^y"{
+            if FirstNum1==true{
+                FirstNum1=false
+                self.num1=1.0
+            }
+            self.num2=pow(self.num2, self.num1)
+        }
+        else if cal=="y√x"{
+            if FirstNum1==true{
+                FirstNum1=false
+                self.num1=1.0
+            }
+            if self.num2>0{
+            self.num2 = pow(self.num2, 1/self.num1)
+            }
+        }
+        else if cal=="÷"{
+            if FirstNum1==true{
+                FirstNum1=false
+                self.num1=self.num2*self.num2
+            }
+            if self.num2==Float(0){
+                return ""
+            }
+            else{
+                self.num2=self.num1/self.num2
+            }
+        }
+        else if cal=="×"{
+            if FirstNum1==true{
+                FirstNum1=false
+                self.num1=1.0
+            }
+            self.num2=self.num1*self.num2
+        }
+        else if cal=="-"{
+            if FirstNum1==true{
+                FirstNum1=false
+                self.num1=2*self.num2
+            }
+            self.num2=self.num1-self.num2
+        }
+        else if cal=="+"{
+            if FirstNum1==true{
+                FirstNum1=false
+                self.num1=0
+            }
+            self.num2=self.num1+self.num2
+        }
+        self.result=String(self.num2)
+        return self.result
+    }
     func inputCal(calcu: String)->String{
         var result:String
         result="0"
         if UnaryOpera(cal: calcu)==true{
             result=CalUnaryOpera(cal: calcu)
+        }
+        else if BinaryOpera(cal: calcu)==true{
+            if FirstNum1==true{
+                result=CalBinaryOpera(cal: calcu)
+                self.lastOpera=calcu
+                self.num1=self.num2
+            }
+            else{
+                result=CalBinaryOpera(cal: self.lastOpera)
+                self.lastOpera=calcu
+                self.num1=self.num2
+            }
+        }
+        else if calcu=="="{
+            result=CalBinaryOpera(cal: self.lastOpera)
         }
         return result
     }
