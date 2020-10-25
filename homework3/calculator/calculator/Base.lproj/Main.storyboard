@@ -477,6 +477,9 @@
                                                         <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                         <state key="normal" title="Rad"/>
                                                         <variation key="heightClass=regular-widthClass=compact" hidden="YES"/>
+                                                        <connections>
+                                                            <action selector="CalculatorButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Dhm-BU-o9K"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="re5-C6-5h2">
                                                         <rect key="frame" x="0.0" y="0.0" width="0.0" height="54"/>
@@ -543,6 +546,9 @@
                                                         <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                         <state key="normal" title="Rand"/>
                                                         <variation key="heightClass=regular-widthClass=compact" hidden="YES"/>
+                                                        <connections>
+                                                            <action selector="CalculatorButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eIJ-zo-WOu"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <variation key="widthClass=regular" axis="horizontal"/>

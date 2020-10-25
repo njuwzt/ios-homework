@@ -66,7 +66,7 @@ class calculator{
         return self.result
     }
     func UnaryOpera(cal:String)->Bool{
-        return cal=="x^2"||cal=="x^3"||cal=="e^x"||cal=="10^x"||cal=="1/x"||cal=="2√x"||cal=="3√x"||cal=="ln"||cal=="log10"||cal=="x!"||cal=="sin"||cal=="cos"||cal=="tan"||cal=="sinh"||cal=="cosh"||cal=="tanh"||cal=="%"
+        return cal=="x^2"||cal=="x^3"||cal=="e^x"||cal=="10^x"||cal=="1/x"||cal=="2√x"||cal=="3√x"||cal=="ln"||cal=="log10"||cal=="x!"||cal=="sin"||cal=="cos"||cal=="tan"||cal=="Rad"||cal=="sinh"||cal=="cosh"||cal=="tanh"||cal=="Rand"||cal=="%"
     }
     func CalUnaryOpera(cal:String)->String{
         if cal=="x^2"{
@@ -123,6 +123,9 @@ class calculator{
             self.num2=self.num2/180*3.14159265358979
             self.num2=tan(self.num2)
         }
+        else if cal=="Rad"{
+            self.num2=self.num2/180*3.14159265358979
+        }
         else if cal=="sinh"{
             self.num2=sinh(self.num2)
         }
@@ -131,6 +134,12 @@ class calculator{
         }
         else if cal=="tanh"{
             self.num2=tanh(self.num2)
+        }
+        else if cal=="tanh"{
+            self.num2=tanh(self.num2)
+        }
+        else if cal=="Rand"{
+            self.num2 = Float(Double(arc4random()))
         }
         else if cal=="%"{
             self.num2=self.num2/100
@@ -214,6 +223,10 @@ class calculator{
         }
         else if calcu=="="{
             result=CalBinaryOpera(cal: self.lastOpera)
+            self.num1=0
+            self.eorPi=false
+            self.FirstNum1=true
+            self.lastOpera=""
         }
         return result
     }
