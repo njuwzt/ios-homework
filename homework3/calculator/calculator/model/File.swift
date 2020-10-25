@@ -148,7 +148,7 @@ class calculator{
         return self.result
     }
     func BinaryOpera(cal:String)->Bool{
-        return cal=="x^y"||cal=="y√x"||cal=="÷"||cal=="×"||cal=="-"||cal=="+"
+        return cal=="x^y"||cal=="y√x"||cal=="/"||cal=="×"||cal=="-"||cal=="+"
     }
     func CalBinaryOpera(cal:String)->String{
         if cal=="x^y"{
@@ -167,7 +167,7 @@ class calculator{
             self.num2 = pow(self.num2, 1/self.num1)
             }
         }
-        else if cal=="÷"{
+        else if cal=="/"{
             if FirstNum1==true{
                 FirstNum1=false
                 self.num1=self.num2*self.num2

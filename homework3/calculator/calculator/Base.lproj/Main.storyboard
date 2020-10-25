@@ -130,7 +130,7 @@
                                                 <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                                 <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                                <state key="normal" title="÷"/>
+                                                <state key="normal" title="/"/>
                                                 <connections>
                                                     <action selector="CalculatorButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9jB-Vd-moD"/>
                                                 </connections>
