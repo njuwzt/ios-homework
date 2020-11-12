@@ -13,7 +13,7 @@
 		C007CA22254535DA0075C5AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C007CA20254535DA0075C5AB /* Main.storyboard */; };
 		C007CA24254535DC0075C5AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C007CA23254535DC0075C5AB /* Assets.xcassets */; };
 		C007CA27254535DC0075C5AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C007CA25254535DC0075C5AB /* LaunchScreen.storyboard */; };
-		C057C63B2545867A00C68726 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = C057C63A2545867A00C68726 /* File.swift */; };
+		C0A83E932545B3810069844A /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A83E922545B3810069844A /* File.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +25,7 @@
 		C007CA23254535DC0075C5AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C007CA26254535DC0075C5AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C007CA28254535DC0075C5AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C057C63A2545867A00C68726 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = File.swift; path = model/File.swift; sourceTree = "<group>"; };
+		C0A83E922545B3810069844A /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = File.swift; path = model/File.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +58,7 @@
 		C007CA19254535DA0075C5AB /* calculator */ = {
 			isa = PBXGroup;
 			children = (
-				C057C63A2545867A00C68726 /* File.swift */,
+				C0A83E922545B3810069844A /* File.swift */,
 				C007CA1A254535DA0075C5AB /* AppDelegate.swift */,
 				C007CA1C254535DA0075C5AB /* SceneDelegate.swift */,
 				C007CA1E254535DA0075C5AB /* ViewController.swift */,
@@ -142,7 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C007CA1F254535DA0075C5AB /* ViewController.swift in Sources */,
-				C057C63B2545867A00C68726 /* File.swift in Sources */,
+				C0A83E932545B3810069844A /* File.swift in Sources */,
 				C007CA1B254535DA0075C5AB /* AppDelegate.swift in Sources */,
 				C007CA1D254535DA0075C5AB /* SceneDelegate.swift in Sources */,
 			);
