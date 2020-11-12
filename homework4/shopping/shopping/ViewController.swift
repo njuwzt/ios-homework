@@ -25,6 +25,16 @@ class ViewController: UIViewController,UITextFieldDelegate,UIImagePickerControll
         updateSaveButtonState()
         nameTextField.delegate = self
         reasonTextField.delegate = self
+        
+        if let good = good {
+            navigationItem.title = good.name
+            nameTextField.text = good.name
+            photoImageView.image = good.photo
+            reasonTextField.text = good.reason
+        }
+        
+        // Enable the Save button only if the text field has a valid Meal name.
+        updateSaveButtonState()
     }
     //MASK:UITextFieldDelegate
     func textFieldShouldReturn(_ textField:UITextField)->Bool{
@@ -100,7 +110,18 @@ class ViewController: UIViewController,UITextFieldDelegate,UIImagePickerControll
         good = Good(name: name, photo: photo, reason: reason)
     }
     @IBAction func cancel(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
+        // Depending on style of presentation (modal or push presentation), this view controller needs to be dismissed in two different ways.
+        let isPresentingInAddGoodMode = presentingViewController is UINavigationController
+        
+        if isPresentingInAddGoodMode {
+            dismiss(animated: true, completion: nil)
+        }
+        else if let owningNavigationController = navigationController{
+            owningNavigationController.popViewController(animated: true)
+        }
+        else {
+            fatalError("The MealViewController is not inside a navigation controller.")
+        }
     }
     
     //MASK:Action

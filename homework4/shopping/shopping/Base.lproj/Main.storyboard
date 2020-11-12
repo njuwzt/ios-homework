@@ -47,6 +47,7 @@
                                     <outlet property="nameLabel" destination="zeu-G9-ozm" id="zrW-FM-sgw"/>
                                     <outlet property="photoImageView" destination="Gg8-JE-eNN" id="7x0-8d-mKR"/>
                                     <outlet property="reasonLabel" destination="6aK-5q-SIC" id="iYP-Ux-Z6f"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="showDetail" id="PJA-03-9jq"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -72,11 +73,11 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="shopping" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="xvc-kr-SRh">
-                                <rect key="frame" x="10" y="76" width="394" height="479"/>
+                                <rect key="frame" x="10" y="108" width="394" height="479"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GOODS NAME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O9L-xf-0Ek">
                                         <rect key="frame" x="0.0" y="0.0" width="112.5" height="20.5"/>
@@ -197,9 +198,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1YZ-Ps-OmI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="860.86956521739137" y="-109.15178571428571"/>
+            <point key="canvasLocation" x="730" y="-456"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="PJA-03-9jq"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="Image" width="320" height="320"/>
     </resources>

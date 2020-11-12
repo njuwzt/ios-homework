@@ -21,3 +21,7 @@ class Good {
         self.reason=reason
     }
 }
+
+struct PropertyKey{
+    
+}

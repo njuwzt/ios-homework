@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import os.log
 class GoodTableViewController: UITableViewController {
     
     var goods = [Good]()
@@ -34,7 +34,7 @@ class GoodTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
+        navigationItem.leftBarButtonItem = editButtonItem
         loadSampleGoods()
     }
 
@@ -68,9 +68,16 @@ class GoodTableViewController: UITableViewController {
     
     @IBAction func unwindToGoodList(sender: UIStoryboardSegue){
         if let sourceViewController = sender.source as? ViewController, let good = sourceViewController.good{
-            let newIndexPath = IndexPath(row: goods.count, section: 0)
-            goods.append(good)
-            tableView.insertRows(at: [newIndexPath], with: .automatic)
+            if let selectedIndexPath = tableView.indexPathForSelectedRow {
+                // Update an existing meal.
+                goods[selectedIndexPath.row] = good
+                tableView.reloadRows(at: [selectedIndexPath], with: .none)
+            }
+            else {
+                let newIndexPath = IndexPath(row: goods.count, section: 0)
+                goods.append(good)
+                tableView.insertRows(at: [newIndexPath], with: .automatic)
+            }
         }
     }
 
@@ -84,17 +91,18 @@ class GoodTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
+            goods.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
+    
 
     /*
     // Override to support rearranging the table view.
@@ -111,14 +119,36 @@ class GoodTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        super.prepare(for: segue, sender: sender)
+        switch(segue.identifier ?? ""){
+        case "AddItem":
+            os_log("Adding a new meal", log: OSLog.default, type: .debug)
+        case "ShowDetail":
+                guard let goodDetailViewController = segue.destination as? ViewController else {
+                    fatalError("Unexpected destination: \(segue.destination)")
+                }
+                
+                guard let selectedGoodCell = sender as? GoodTableViewCell else {
+                    fatalError("Unexpected sender: \(sender)")
+                }
+                
+                guard let indexPath = tableView.indexPath(for: selectedGoodCell) else {
+                    fatalError("The selected cell is not being displayed by the table")
+                }
+                
+                let selectedGood = goods[indexPath.row]
+                goodDetailViewController.good = selectedGood
+                
+            default:
+                fatalError("Unexpected Segue Identifier; \(segue.identifier)")
+            
+        }
     }
-    */
+    
 
 }
