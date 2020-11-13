@@ -28,14 +28,18 @@ class GoodTableViewController: UITableViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        // Use the edit button item provided by the table view controller.
         navigationItem.leftBarButtonItem = editButtonItem
-        loadSampleGoods()
+        
+        // Load any saved goods, otherwise load sample data.
+        if let savedGoods = loadGoods() {
+            goods += savedGoods
+        }
+        else {
+            // Load the sample data.
+            loadSampleGoods()
+        }
     }
 
     // MARK: - Table view data source
@@ -69,7 +73,7 @@ class GoodTableViewController: UITableViewController {
     @IBAction func unwindToGoodList(sender: UIStoryboardSegue){
         if let sourceViewController = sender.source as? ViewController, let good = sourceViewController.good{
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
-                // Update an existing meal.
+                // Update an existing good.
                 goods[selectedIndexPath.row] = good
                 tableView.reloadRows(at: [selectedIndexPath], with: .none)
             }
@@ -78,6 +82,7 @@ class GoodTableViewController: UITableViewController {
                 goods.append(good)
                 tableView.insertRows(at: [newIndexPath], with: .automatic)
             }
+            saveGoods()
         }
     }
 
@@ -97,6 +102,7 @@ class GoodTableViewController: UITableViewController {
         if editingStyle == .delete {
             // Delete the row from the data source
             goods.remove(at: indexPath.row)
+            saveGoods()
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
@@ -127,8 +133,8 @@ class GoodTableViewController: UITableViewController {
         super.prepare(for: segue, sender: sender)
         switch(segue.identifier ?? ""){
         case "AddItem":
-            os_log("Adding a new meal", log: OSLog.default, type: .debug)
-        case "ShowDetail":
+            os_log("Adding a new good", log: OSLog.default, type: .debug)
+        case "showDetail":
                 guard let goodDetailViewController = segue.destination as? ViewController else {
                     fatalError("Unexpected destination: \(segue.destination)")
                 }
@@ -144,11 +150,22 @@ class GoodTableViewController: UITableViewController {
                 let selectedGood = goods[indexPath.row]
                 goodDetailViewController.good = selectedGood
                 
-            default:
-                fatalError("Unexpected Segue Identifier; \(segue.identifier)")
+        default:
+            fatalError("Unexpected Segue Identifier; \(segue.identifier)")
             
         }
     }
     
-
+    private func saveGoods() {
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(goods, toFile: Good.ArchiveURL.path)
+        if isSuccessfulSave {
+            os_log("Goods successfully saved.", log: OSLog.default, type: .debug)
+        } else {
+            os_log("Failed to save goods...", log: OSLog.default, type: .error)
+        }
+    }
+    
+    private func loadGoods() -> [Good]?  {
+        return NSKeyedUnarchiver.unarchiveObject(withFile: Good.ArchiveURL.path) as? [Good]
+    }
 }
