@@ -15,13 +15,13 @@ class GoodTableViewController: UITableViewController {
         let photo1 = UIImage(named: "Good1")
         let photo2 = UIImage(named: "Good2")
         let photo3 = UIImage(named: "Good3")
-        guard let good1=Good(name:"plane", photo:photo1, reason:"I like to fly") else{
+        guard let good1=Good(name:"plane", photo:photo1, reason:"I like to fly", rating: 3) else{
             fatalError("Unable to instantiate good1")
         }
-        guard let good2=Good(name:"chocolate", photo:photo2, reason:"Very delicious") else{
+        guard let good2=Good(name:"chocolate", photo:photo2, reason:"Very delicious", rating: 4) else{
                    fatalError("Unable to instantiate good2")
                }
-        guard let good3=Good(name:"lighting", photo:photo3, reason:"And God said,Let therer be light") else{
+        guard let good3=Good(name:"lighting", photo:photo3, reason:"And God said,Let therer be light", rating: 5) else{
                    fatalError("Unable to instantiate good3")
                }
         goods += [good1, good2, good3]
@@ -35,7 +35,14 @@ class GoodTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         navigationItem.leftBarButtonItem = editButtonItem
-        loadSampleGoods()
+        if let savedGoods = loadGoods() {
+            goods += savedGoods
+        }
+        else {
+            // Load the sample data.
+            loadSampleGoods()
+        }
+    
     }
 
     // MARK: - Table view data source
@@ -62,6 +69,8 @@ class GoodTableViewController: UITableViewController {
         cell.nameLabel.text = good.name
         cell.photoImageView.image = good.photo
         cell.reasonLabel.text = good.reason
+        cell.ratingControl.rating=good.rating
+        
         
         return cell
     }
@@ -78,6 +87,7 @@ class GoodTableViewController: UITableViewController {
                 goods.append(good)
                 tableView.insertRows(at: [newIndexPath], with: .automatic)
             }
+            saveGoods()
         }
     }
 
@@ -128,7 +138,7 @@ class GoodTableViewController: UITableViewController {
         switch(segue.identifier ?? ""){
         case "AddItem":
             os_log("Adding a new meal", log: OSLog.default, type: .debug)
-        case "ShowDetail":
+        case "showDetail":
                 guard let goodDetailViewController = segue.destination as? ViewController else {
                     fatalError("Unexpected destination: \(segue.destination)")
                 }
@@ -144,9 +154,21 @@ class GoodTableViewController: UITableViewController {
                 let selectedGood = goods[indexPath.row]
                 goodDetailViewController.good = selectedGood
                 
-            default:
+        default:
                 fatalError("Unexpected Segue Identifier; \(segue.identifier)")
             
         }
+    }
+    private func saveGoods() {
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(goods, toFile: Good.ArchiveURL.path)
+        if isSuccessfulSave {
+            os_log("Goods successfully saved.", log: OSLog.default, type: .debug)
+        } else {
+            os_log("Failed to save goods...", log: OSLog.default, type: .error)
+        }
+    }
+    
+    private func loadGoods() -> [Good]?  {
+        return NSKeyedUnarchiver.unarchiveObject(withFile: Good.ArchiveURL.path) as? [Good]
     }
 }

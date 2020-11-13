@@ -18,6 +18,7 @@ class ViewController: UIViewController,UITextFieldDelegate,UIImagePickerControll
     @IBOutlet weak var reasonLabel: UILabel!
     @IBOutlet weak var reasonTextField: UITextField!
     @IBOutlet weak var photoImageView: UIImageView!
+    @IBOutlet weak var ratingControl: RatingControl!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +32,7 @@ class ViewController: UIViewController,UITextFieldDelegate,UIImagePickerControll
             nameTextField.text = good.name
             photoImageView.image = good.photo
             reasonTextField.text = good.reason
+            ratingControl.rating = good.rating
         }
         
         // Enable the Save button only if the text field has a valid Meal name.
@@ -106,8 +108,9 @@ class ViewController: UIViewController,UITextFieldDelegate,UIImagePickerControll
         let name = nameTextField.text ?? ""
         let photo = photoImageView.image
         let reason = reasonTextField.text ?? ""
+        let rating = ratingControl.rating
         
-        good = Good(name: name, photo: photo, reason: reason)
+        good = Good(name: name, photo: photo, reason: reason, rating:rating)
     }
     @IBAction func cancel(_ sender: UIBarButtonItem) {
         // Depending on style of presentation (modal or push presentation), this view controller needs to be dismissed in two different ways.

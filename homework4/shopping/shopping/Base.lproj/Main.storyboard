@@ -27,15 +27,19 @@
                                             <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zeu-G9-ozm">
-                                            <rect key="frame" x="168" y="0.0" width="246" height="43"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6aK-5q-SIC">
+                                            <rect key="frame" x="168" y="56" width="246" height="34"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6aK-5q-SIC">
-                                            <rect key="frame" x="168" y="85" width="246" height="43"/>
+                                        <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="9oi-dW-lGn" customClass="RatingControl" customModule="shopping" customModuleProvider="target">
+                                            <rect key="frame" x="161" y="98" width="246" height="51"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </stackView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zeu-G9-ozm">
+                                            <rect key="frame" x="168" y="11" width="246" height="31"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -46,6 +50,7 @@
                                 <connections>
                                     <outlet property="nameLabel" destination="zeu-G9-ozm" id="zrW-FM-sgw"/>
                                     <outlet property="photoImageView" destination="Gg8-JE-eNN" id="7x0-8d-mKR"/>
+                                    <outlet property="ratingControl" destination="9oi-dW-lGn" id="oMu-dc-LMw"/>
                                     <outlet property="reasonLabel" destination="6aK-5q-SIC" id="iYP-Ux-Z6f"/>
                                     <segue destination="BYZ-38-t0r" kind="show" identifier="showDetail" id="PJA-03-9jq"/>
                                 </connections>
@@ -76,8 +81,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="xvc-kr-SRh">
-                                <rect key="frame" x="10" y="108" width="394" height="479"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="xvc-kr-SRh">
+                                <rect key="frame" x="10" y="108" width="394" height="537"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GOODS NAME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O9L-xf-0Ek">
                                         <rect key="frame" x="0.0" y="0.0" width="112.5" height="20.5"/>
@@ -118,6 +123,9 @@
                                             <outletCollection property="gestureRecognizers" destination="8Za-Sw-SfP" appends="YES" id="DcH-Ej-Lox"/>
                                         </connections>
                                     </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="aPA-Bh-c1s" customClass="RatingControl" customModule="shopping" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="487" width="252" height="50"/>
+                                    </stackView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="OWQ-wX-XgL" secondAttribute="trailing" id="1sm-yQ-7Yf"/>
@@ -149,6 +157,7 @@
                         <outlet property="goodsNameLabel" destination="O9L-xf-0Ek" id="lwZ-rU-D48"/>
                         <outlet property="nameTextField" destination="OWQ-wX-XgL" id="53G-Bk-QLC"/>
                         <outlet property="photoImageView" destination="TqT-Mb-k4t" id="j7b-fw-Gz7"/>
+                        <outlet property="ratingControl" destination="aPA-Bh-c1s" id="iVW-xQ-wmu"/>
                         <outlet property="reasonLabel" destination="UpY-Du-P4A" id="nDT-jc-znW"/>
                         <outlet property="reasonTextField" destination="5B2-bn-RwH" id="WM8-aK-qen"/>
                         <outlet property="saveButton" destination="W4y-a0-NIH" id="3nr-82-X7M"/>

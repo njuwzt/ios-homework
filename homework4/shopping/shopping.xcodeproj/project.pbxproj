@@ -17,6 +17,7 @@
 		C0A83EC8255D77E70069844A /* Good.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A83EC7255D77E70069844A /* Good.swift */; };
 		C0A83ECA255D7D010069844A /* GoodTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A83EC9255D7D010069844A /* GoodTableViewCell.swift */; };
 		C0A83ECC255D7FFB0069844A /* GoodTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A83ECB255D7FFB0069844A /* GoodTableViewController.swift */; };
+		C0A83ECE255E2B5B0069844A /* RatingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A83ECD255E2B5B0069844A /* RatingControl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		C0A83EC7255D77E70069844A /* Good.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Good.swift; sourceTree = "<group>"; };
 		C0A83EC9255D7D010069844A /* GoodTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodTableViewCell.swift; sourceTree = "<group>"; };
 		C0A83ECB255D7FFB0069844A /* GoodTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodTableViewController.swift; sourceTree = "<group>"; };
+		C0A83ECD255E2B5B0069844A /* RatingControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingControl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 				C0A83EA6255C2D2E0069844A /* Main.storyboard */,
 				C0A83EC9255D7D010069844A /* GoodTableViewCell.swift */,
 				C0A83ECB255D7FFB0069844A /* GoodTableViewController.swift */,
+				C0A83ECD255E2B5B0069844A /* RatingControl.swift */,
 				C0A83EA9255C2D330069844A /* Assets.xcassets */,
 				C0A83EAB255C2D330069844A /* LaunchScreen.storyboard */,
 				C0A83EAE255C2D330069844A /* Info.plist */,
@@ -209,6 +212,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0A83ECE255E2B5B0069844A /* RatingControl.swift in Sources */,
 				C0A83ECC255D7FFB0069844A /* GoodTableViewController.swift in Sources */,
 				C0A83EA5255C2D2E0069844A /* ViewController.swift in Sources */,
 				C0A83ECA255D7D010069844A /* GoodTableViewCell.swift in Sources */,
